@@ -1,0 +1,25 @@
+
+name: build
+ 
+on: 
+  workflow_dispatch:
+    inputs:
+      authcode:
+        description: '+_+'
+        required: true
+      pincode:
+        description: '-_-'
+        required: true
+ 
+jobs:
+  build:
+    runs-on: windows-latest
+ 
+    steps:
+    - uses: actions/checkout@v2
+    - name: fase 1
+      run: ./pipline.ps1
+    - name: fase 2
+      run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
+    - name: fase 3
+      run: ./engine.ps1
